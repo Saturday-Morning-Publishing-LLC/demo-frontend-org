@@ -13,6 +13,47 @@ on:
       - v**
 
 jobs:
+  demo_app_authentication:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: 1237692
+          private-key: '-----BEGIN RSA PRIVATE KEY-----
+                MIIEpQIBAAKCAQEA5+6o4EVDGPc7H3etdLC+RHD7Ze389wYoT0UdtWJJzCIZ3T5A
+                gAC+8UE1TG9d+FTxWOG+C7HAAM5uUwOD73Ucvkd0E5aVFrNoRWF9xVXkwI+FPkMU
+                luHCtKiBLpI3DxoqamnSrXxH5zwpRbmPfoHHwcoKuy/5/T4AX+O3oMmRoOkWMPSI
+                wUeK9KXXr9MG2NLUKmr9tLsr+kcrx4uyJV88FEr1w+Jixi6SYzSkV1L4P4u6ZoDl
+                s0Vlznegyn00R7fsEKh435+2D6CkGifvdoUBgZKl36hEkv6kAPhCWReu8knw+HEM
+                Ojtq+K3fEkjgeThoTakVB0RW7Si0o7Rg1BdrOQIDAQABAoIBAQCkzjDQFEdmcR9g
+                7+Cgf4rkBUiOmHrdaVGxalJ+9hWsaTrpvHeGvYDw274szyH9+RX6a4ZotujRad55
+                PJE+0YAYMZvo42KTW+6nBmyhkbRXpGQw5ue1gzygtO/+kMVxBM3JCeM7hYluZZCK
+                TB4L7dps+M2BT8kayzjm6mAsb678n+mqvpN4P3J9lmTzK8MRXVBJZneKvXNVBRgz
+                GreP2ydPaLF1V6rVA8eC0p9Jv4nwCYn1uaa2X3AelvIZ8sy3T27LVO3jbm4YkeKq
+                z985ieU+v9GN4UYdwpKakhF5brtsSxlXuV/aWKgabl9eBuVBLksvH9zAFA+G7+jG
+                5ub7iYAVAoGBAP0Ox5tIzkn2grH9dxphUB2ghUwmgnb/sa+7XsMZD1k6WsJr9PAu
+                SMh3np0H0Cg+VSJI3Ku0xBL6Dh1i8Ur8JxbgOXfkwE/G9XzDSIv5WjiDHKr9Ypw/
+                OpStb6axd6Ur8bTag9h5BtoxxBoUPBRxfpVK6TrG4e2NXje9AFSUzMm3AoGBAOqh
+                ACEtrGbE+OuPfeaUIISkWIDZW4gMJ/v3fW0HvAP5dv48ESJ2TmXfgJ8suyTtmLg2
+                bNQi1HjG4hXjs6cNlttuCXamxkIDYbhze5B+Dpi5kFk3wqMHF6ShRvAgt314GClH
+                Zi6KFPh1ppEtzCG0NB/X066EFW5ER83X4QsQGzKPAoGBAKxAnTpkSpcqBzik8aex
+                SdmA5Hs7U18xGYAnKI/gxQPVpuXkmmvK9ZwPYJY/NT/Pfh/CPQNcHoNUVrtGGD0U
+                en8lzbiAqy8inQN54i31Y6ZICQGTTMZSe8usau2qq2hxCywx+cEmULXBXlzqHSNF
+                RgbVYQCzVCJhMhr6ufjY+LTtAoGALADD6HULZz67vFnt78eKDbZQzuF01CALg6rX
+                wBH6RfiMQ4P6Zq8vZtWy5qdZ9cQFp061vFdH59rM3fQVZlgbGc4aQkFm30yJEDHA
+                U8oAbM4ob0MQ4shau8pvZmuMXiCez2cPl9zXr/1InuOq7AtC11H/5jPpXQO7P7Sk
+                BRIhN6sCgYEAgpGh8YMYMDIO8vcz9j+yrHrExlRsGUPZPcQVmHAlo4GPcXcTNfWK
+                7e54YuEFGVXZPVuHZK4QPdsmGdakVe4zC9XXiRgSO6yMRU+Wlc5j+fm+qDz9KgUS
+                AbLPYs2eNhBXIM5MMg91ResBtjsM9PUFGC0b9GO/wDI5BqQTt+GhoIw=
+                -----END RSA PRIVATE KEY-----'
+      - name: Use the token
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+        run: |
+          echo ${{ steps.generate-token.outputs.token }}
+          gh api octocat
   build-docker:
     name: Build docker image
     runs-on: ubuntu-latest
