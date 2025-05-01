@@ -22,6 +22,8 @@ jobs:
         with:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
+          owner: Saturday-Morning-Publishing-LLC
+          repo: demo-backend-org
       - name: Use the token
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
