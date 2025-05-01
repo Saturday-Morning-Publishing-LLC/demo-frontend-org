@@ -30,7 +30,21 @@ jobs:
         run: |
           echo ${{ steps.generate-token.outputs.token }}
           gh api octocat
-  # build-docker:
+      - name: Build Web app
+        run: |
+          echo "Build Web app"
+          sleep 10s
+      - uses: convictional/trigger-workflow-and-wait@v1.3.0
+        with: 
+          owner: Saturday-Morning-Publishing-LLC
+          repo: demo-backend-org
+          ref: main
+          github_token: ${{ steps.generate-token.outputs.token }}
+          workflow_file_name: deploy.yml
+          inputs: '{"version":"1.0"}'
+
+
+  #  build-docker:
   #  name: Build docker image
   #  runs-on: ubuntu-latest
   #  steps:
