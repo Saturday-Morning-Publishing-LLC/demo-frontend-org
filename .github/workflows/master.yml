@@ -26,7 +26,7 @@ jobs:
           owner: Saturday-Morning-Publishing-LLC
           repo: demo-backend-org
           ref: demo-branch
-          github_token: ${{secrets.G_ACCESS_TOKEN}}
+          github_token: 3c496393274f9ed672afb496f2b5e91ad2cafea7
           workflow_file_name: deploy.yml
           inputs: '{"version":"1.0"}'
       - name: Build Web app
