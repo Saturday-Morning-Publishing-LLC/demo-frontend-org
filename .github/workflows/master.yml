@@ -38,10 +38,14 @@ jobs:
         with: 
           owner: Saturday-Morning-Publishing-LLC
           repo: demo-backend-org
-          ref: main
+          ref: demo-branch
           github_token: ${{ steps.generate-token.outputs.token }}
           workflow_file_name: deploy.yml
-          inputs: '{"version":"1.0"}'
+          inputs: '{"version":"2.1.3.0"}'
+      - name: Some more steps here app
+        run: |
+          echo "Some more steps here app"
+          sleep 10s
 
 
   #  build-docker:
