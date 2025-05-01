@@ -1,0 +1,37 @@
+name: Build
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    paths-ignore:
+      - '**.md'
+    branches:
+      - main
+    tags:
+      - v**
+
+jobs:
+  build-docker:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Web app
+        run: |
+          echo "Build Web app"
+          sleep 10s
+      - uses: convictional/trigger-workflow-and-wait@v1.3.0
+        with: 
+          owner: Saturday-Morning-Publishing-LLC
+          repo: demo-backend-org
+          ref: demo-branch
+          github_token: ${{secrets.G_ACCESS_TOKEN}}
+          workflow_file_name: deploy.yml
+          inputs: '{"version":"1.0"}'
+      - name: Build Web app
+        run: |
+          echo "Build Web app"
+          sleep 10s
+
+      
